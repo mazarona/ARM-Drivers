@@ -58,12 +58,12 @@ extern const NVIC_CfgType NVIC_Cfg[];
  * \Return value:   : None
  *******************************************************************************/
 void IntCrtl_Init(void) {
-  uint32 interruptNumber;
-  uint8 groupPriority, subGroupPriority, prio;
+  uint32 interruptNumber, prio;
+  uint8 groupPriority, subGroupPriority, i;
   /*TODO Configure Grouping\SubGrouping System in APINT register in SCB*/
   APINT = (APINT_VECTKEY << 16) | (NVIC_GROUPING_SYS << 8);
 
-  for (int i = 0; i < NUMBER_OF_ACTIVE_INT; i++) {
+  for (i = 0; i < NUMBER_OF_ACTIVE_INT; i++) {
     interruptNumber = NVIC_Cfg[i].interruptNumber;
     groupPriority = NVIC_Cfg[i].groubPriority;
     subGroupPriority = NVIC_Cfg[i].subGroupPriority;

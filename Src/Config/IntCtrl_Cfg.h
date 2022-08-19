@@ -19,14 +19,14 @@
 /**********************************************************************************************************************
  *  GLOBAL CONSTANT MACROS
  *********************************************************************************************************************/
-#define NUMBER_OF_ACTIVE_INT 0
+#define NUMBER_OF_ACTIVE_INT 3
 /*
  * NVIC_GROUPING_SYS_XXX -> group[0:7], sub-group[0:0]
  * NVIC_GROUPING_SYS_XXY -> group[0:3], sub-group[0:1]
  * NVIC_GROUPING_SYS_XYY -> group[0:1], sub-group[0:3]
- * NVIC_GROUPING_SYS_YYY -> group[0:0], sub-group[0:7]
+ * NVIC_GROUPING_SYS_YYY -> group[0:0], sub-group[0:7] -> No preemption
  */
-#define NVIC_GROUPING_SYS NVIC_GROUPING_SYS_XXX
+#define NVIC_GROUPING_SYS NVIC_GROUPING_SYS_YYY
 
 /**********************************************************************************************************************
  *  GLOBAL FUNCTION MACROS

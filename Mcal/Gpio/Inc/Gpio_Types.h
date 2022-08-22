@@ -3,20 +3,19 @@
  *  FILE DESCRIPTION
  *
  -------------------------------------------------------------------------------------------------------------------
- *         File:  IntCrtl.h
- *       Module:  IntCrtl
+ *         File: GPIO_Types.h
+ *       Module: GPIO
  *
- *  Description:  header file for IntCrtl Module
+ *  Description: API types definition for GPIO module.
  *
  *********************************************************************************************************************/
-#ifndef IntCrtl_H
-#define IntCrtl_H
+#ifndef GPIO_TYPES_H
+#define GPIO_TYPES_H
 
 /**********************************************************************************************************************
  * INCLUDES
  *********************************************************************************************************************/
-#include "../../Common/Std_Types.h"
-#include "../../Config/IntCtrl_Cfg.h"
+#include "../../../Lib/Std_Types.h"
 
 /**********************************************************************************************************************
  *  GLOBAL CONSTANT MACROS
@@ -26,13 +25,72 @@
  *  GLOBAL FUNCTION MACROS
  *********************************************************************************************************************/
 
-#define NVIC_ENABLE_ALL_INT() __asm("CPSIE i")
-#define NVIC_DISABLE_ALL_INT() __asm("CPSID i")
-
 /**********************************************************************************************************************
  *  GLOBAL DATA TYPES AND STRUCTURES
  *********************************************************************************************************************/
+typedef enum {
+  GPIO_Channel_A0,
+  GPIO_Channel_A1,
+  GPIO_Channel_A2,
+  GPIO_Channel_A3,
+  GPIO_Channel_A4,
+  GPIO_Channel_A5,
+  GPIO_Channel_A6,
+  GPIO_Channel_A7,
 
+  GPIO_Channel_B0,
+  GPIO_Channel_B1,
+  GPIO_Channel_B2,
+  GPIO_Channel_B3,
+  GPIO_Channel_B4,
+  GPIO_Channel_B5,
+  GPIO_Channel_B6,
+  GPIO_Channel_B7,
+
+  GPIO_Channel_C0,
+  GPIO_Channel_C1,
+  GPIO_Channel_C2,
+  GPIO_Channel_C3,
+  GPIO_Channel_C4,
+  GPIO_Channel_C5,
+  GPIO_Channel_C6,
+  GPIO_Channel_C7,
+
+  GPIO_Channel_D0,
+  GPIO_Channel_D1,
+  GPIO_Channel_D2,
+  GPIO_Channel_D3,
+  GPIO_Channel_D4,
+  GPIO_Channel_D5,
+  GPIO_Channel_D6,
+  GPIO_Channel_D7,
+
+  GPIO_Channel_E0,
+  GPIO_Channel_E1,
+  GPIO_Channel_E2,
+  GPIO_Channel_E3,
+  GPIO_Channel_E4,
+  GPIO_Channel_E5,
+
+  GPIO_Channel_F0,
+  GPIO_Channel_F1,
+  GPIO_Channel_F2,
+  GPIO_Channel_F3,
+  GPIO_Channel_F4,
+} Gpio_ChannelType;
+
+typedef enum {
+  GPIO_Port_A,
+  GPIO_Port_B,
+  GPIO_Port_C,
+  GPIO_Port_D,
+  GPIO_Port_E,
+  GPIO_Port_F,
+} Gpio_PortType;
+
+typedef enum { GPIO_LEVEL_LOW, GPIO_LEVEL_HIGH } Gpio_LevelType;
+
+typedef uint8 Gpio_PortLevelType;
 /**********************************************************************************************************************
  *  GLOBAL DATA PROTOTYPES
  *********************************************************************************************************************/
@@ -41,21 +99,8 @@
  *  GLOBAL FUNCTION PROTOTYPES
  *********************************************************************************************************************/
 
-/******************************************************************************
- * \Syntax          : void IntCrtl_Init(void)
- * \Description     : initialize Nvic\SCB Module by parsing the Configuration
- *                    into Nvic\SCB registers
- *
- * \Sync\Async      : Synchronous
- * \Reentrancy      : Non Reentrant
- * \Parameters (in) : None
- * \Parameters (out): None
- * \Return value:   : None
- *******************************************************************************/
-void IntCrtl_Init(void);
-
-#endif /* IntCrtl_H */
+#endif /* FILE_NAME_H */
 
 /**********************************************************************************************************************
- *  END OF FILE: IntCrtl.h
+ *  END OF FILE: Std_Types.h
  *********************************************************************************************************************/

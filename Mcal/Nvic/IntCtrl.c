@@ -12,9 +12,9 @@
  *  INCLUDES
  *********************************************************************************************************************/
 #include "Inc/IntCtrl.h"
-#include "../Common/Mcu_Hw.h"
-#include "../Common/Std_Types.h"
-#include "../Config/IntCtrl_Cfg.h"
+#include "../../Lib/Mcu_Hw.h"
+#include "../../Lib/Std_Types.h"
+#include "Config/IntCtrl_Cfg.h"
 #include "Inc/IntCtrl_Types.h"
 
 /**********************************************************************************************************************

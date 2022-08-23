@@ -20,26 +20,6 @@
 /**********************************************************************************************************************
  *  GLOBAL DATA TYPES AND STRUCTURES
  *********************************************************************************************************************/
-typedef struct {
-  uint32 VECACT : 8;
-  uint32 : 3;
-  uint32 RETBASE : 1;
-  uint32 VECPEND : 7;
-  uint32 : 2;
-  uint32 ISRPEND : 1;
-  uint32 ISRPRE : 1;
-  uint32 : 1;
-  uint32 PENDSTCLR : 1;
-  uint32 PENDSTSET : 1;
-  uint32 UNPENDSV : 1;
-  uint32 PENDSV : 1;
-  uint32 : 2;
-  uint32 NMISET : 1;
-} INTCTRL_BF;
-typedef union {
-  uint32 R;
-  INTCTRL_BF B;
-} INTCTRL_Tag;
 
 /**********************************************************************************************************************
  *  GLOBAL CONSTANT MACROS
@@ -57,15 +37,14 @@ typedef union {
 #define SCB_BASE_ADDRESS (CORTEXM4_PERI_BASE_ADDRESS + 0xD00)
 
 #define APINT *((volatile uint32 *)(CORTEXM4_PERI_BASE_ADDRESS + 0xD0C))
-#define INTCTRL *((volatile INTCTRL_Tag *)(CORTEXM4_PERI_BASE_ADDRESS + 0xD04))
 
 /* GPIO Registers */
-#define GPIO_PORT_A_BASE_ADDRESS 0x40058000
-#define GPIO_PORT_B_BASE_ADDRESS 0x40059000
-#define GPIO_PORT_C_BASE_ADDRESS 0x4005A000
-#define GPIO_PORT_D_BASE_ADDRESS 0x4005B000
-#define GPIO_PORT_E_BASE_ADDRESS 0x4005C000
-#define GPIO_PORT_F_BASE_ADDRESS 0x4005D000
+#define GPIO_PORT_A_BASE_ADDRESS 0x40004000
+#define GPIO_PORT_B_BASE_ADDRESS 0x40005000
+#define GPIO_PORT_C_BASE_ADDRESS 0x40006000
+#define GPIO_PORT_D_BASE_ADDRESS 0x40007000
+#define GPIO_PORT_E_BASE_ADDRESS 0x40024000
+#define GPIO_PORT_F_BASE_ADDRESS 0x40025000
 
 #define GPIO_DATA_OFFSET 0x0
 #define GPIO_DIR_OFFSET 0x400

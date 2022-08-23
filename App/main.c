@@ -1,6 +1,9 @@
-#include "../Mcal/NVIC/Inc/IntCtrl.h"
+#include "../Mcal/Port/Inc/Port.h"
+#include "../Mcal/Gpio/Inc/Gpio.h"
 int main() {
-  IntCrtl_Init();
+  Port_Init();
+  Gpio_WriteChannel(GPIO_Channel_A0, GPIO_LEVEL_HIGH);
+  Gpio_WriteChannel(GPIO_Channel_A1, GPIO_LEVEL_HIGH);
   while (1) {
   }
 }

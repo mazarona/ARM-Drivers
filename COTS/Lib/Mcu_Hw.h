@@ -17,7 +17,7 @@
  *********************************************************************************************************************/
 #include "Std_Types.h"
 
-/**********************************************************************************************************************
+/*****************************************************************************************************************kjj*****
  *  GLOBAL DATA TYPES AND STRUCTURES
  *********************************************************************************************************************/
 
@@ -25,17 +25,47 @@
  *  GLOBAL CONSTANT MACROS
  *********************************************************************************************************************/
 #define CORTEXM4_PERI_BASE_ADDRESS 0xE000E000
+/* SYSTICK Registers */
+#define SYSTICK_BASE_OFFSET 0x010
+#define SYSTICK_BASE_ADDRESS (CORTEXM4_PERI_BASE_ADDRESS + SYSTICK_BASE_OFFSET)
+
+#define SYSTICK_STCTRL_OFFSET 0x0
+#define SYSTICK_STRELOAD_OFFSET 0x4
+#define SYSTICK_STCURRENT_OFFSET 0x8
+
+typedef struct {
+  uint32 EN : 1;
+  uint32 INEN : 1;
+  uint32 CLK_SRC : 1;
+  uint32 : 13;
+  uint32 COUNT : 1;
+  uint32 : 15;
+} SysTick_STCTRL_BF;
+typedef union {
+  uint32 R;
+  SysTick_STCTRL_BF BF;
+} SysTick_STCTRL_Tag;
+
+#define SYSTICK_STCTRL_ADDRESS                                                 \
+  (*((volatile SysTick_STCTRL_Tag *)(SYSTICK_BASE_ADDRESS +                    \
+                                     SYSTICK_STCTRL_OFFSET)))
+#define SYSTICK_STRELOAD_ADDRESS                                               \
+  *((volatile uint32 *)(SYSTICK_BASE_ADDRESS + SYSTICK_STRELOAD_OFFSET))
+#define SYSTICK_STCURRENT_ADDRESS                                              \
+  *((volatile uint32 *)(SYSTICK_BASE_ADDRESS + SYSTICK_STCURRENT_OFFSET))
+
+/*SCB*/
+#define SCB_BASE_OFFSET 0xD00
+#define SCB_BASE_ADDRESS (CORTEXM4_PERI_BASE_ADDRESS + SCB_BASE_OFFSET)
+
 /* NVIC Registers */
-#define NVIC_BASE_ADDRESS (CORTEXM4_PERI_BASE_ADDRESS + 0x100)
+#define NVIC_BASE_OFFSET 0x100
+#define NVIC_BASE_ADDRESS (CORTEXM4_PERI_BASE_ADDRESS + NVIC_BASE_OFFSET)
+
 #define NVIC_EN_OFFSET 0x0
 #define NVIC_PRI_OFFSET 0x300
 #define NVIC_BASE_EN_ADDRESS (NVIC_BASE_ADDRESS + NVIC_EN_OFFSET)
 #define NVIC_BASE_PRI_ADDRESS (NVIC_BASE_ADDRESS + NVIC_PRI_OFFSET)
-#define APINT *((volatile uint32 *)(CORTEXM4_PERI_BASE_ADDRESS + 0xD0C))
-/* SYSTICK Registers */
-#define SYSTICK_BASE_ADDRESS (CORTEXM4_PERI_BASE_ADDRESS + 0x010)
-#define SCB_BASE_ADDRESS (CORTEXM4_PERI_BASE_ADDRESS + 0xD00)
-
 #define APINT *((volatile uint32 *)(CORTEXM4_PERI_BASE_ADDRESS + 0xD0C))
 
 /* GPIO Registers */

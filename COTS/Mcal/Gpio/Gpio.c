@@ -90,7 +90,7 @@ void Gpio_WriteChannel(Gpio_ChannelType channelId, Gpio_LevelType level) {
   byteOffset = gpioDataPorts[portIndex] + 0x3FC - BAND_REGION_START;
   bitNumber = pinIndex;
   bitWordOffset = (byteOffset * 32) + (bitNumber * 4);
-  GET_REG(BAND_ALIAS_REGION_START, bitWordOffset) = 1;
+  GET_REG(BAND_ALIAS_REGION_START, bitWordOffset) = level;
 #else
   dataPortMaskAdd = ((1 << pinIndex) << 2);
   GET_REG(gpioDataPorts[portIndex], GPIO_DATA_OFFSET + dataPortMaskAdd) =

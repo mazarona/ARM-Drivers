@@ -19,7 +19,7 @@
 /**********************************************************************************************************************
  *  GLOBAL CONSTANT MACROS
  *********************************************************************************************************************/
-#define SYSTICK_INIT_PRELOAD_VAL 12000 // Interrupt happens every 1ms
+#define SYSTICK_INIT_PRELOAD_VAL 48000 // Interrupt happens every 1ms
 /* ENABLE -> To enable the system timer interrupt
    DISABLE -> To disable the system timer interrupt
 */

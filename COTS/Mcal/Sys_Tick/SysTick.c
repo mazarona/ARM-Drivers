@@ -27,7 +27,7 @@
 #define SYSTICK_DISABLE 0
 #define SYSTICK_SYSTEM_CLOCK 1
 #define SYSTICK_INTERNAL 0
-#define KEIL_SIM_CLOCK_FREQ 12e6
+#define KEIL_SIM_CLOCK_FREQ 8e6
 
 /**********************************************************************************************************************
  *  LOCAL DATA
@@ -87,7 +87,7 @@ void SysTick_SetDuration(SysTick_DurationInSType onDuration,
   onNumberOfOverFlows = (int)(onDuration * 1000.0);
   offNumberOfOverFlows = (int)(offDuration * 1000.0);
 
-  numberOfOverFlows = onNumberOfOverFlows;
+  numberOfOverFlows = offNumberOfOverFlows;
 
   /* Clear the STCURRENT register by writing to it with any value*/
   SYSTICK_STCURRENT_ADDRESS = SYSTICK_STCURRENT_CLEAR;

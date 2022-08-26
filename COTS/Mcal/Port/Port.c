@@ -58,6 +58,8 @@ void Port_Init(void) {
     portIndex = Port_Config[i].pinId / NUMBER_OF_CHANNELS_PER_PORT;
     pinIndex = Port_Config[i].pinId % NUMBER_OF_CHANNELS_PER_PORT;
     gpioPortBaseAdress = gpioDataPorts[portIndex];
+    /* Enable the clock for the Port */
+    SYSCTRL_RCGCGPIO_ADDRESS |= (1 << portIndex);
 
     /* Pin Direction */
     GET_REG(gpioPortBaseAdress, GPIO_DIR_OFFSET) |=

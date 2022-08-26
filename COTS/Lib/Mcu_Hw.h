@@ -110,7 +110,11 @@ typedef union {
 #define GPIO_PERIPH_ID2_OFFSET 0xFE8
 #define GPIO_PERIPH_ID3_OFFSET 0xFEC
 
-/* GPIO Registers */
+/* SYSCTRL Registers */
+#define SYSCTRL_BASE_ADDRESS 0x400FE000
+#define SYSCTRL_RCGCGPIO_OFFSET 0x608
+#define SYSCTRL_RCGCGPIO_ADDRESS                                               \
+  *((volatile uint32 *)(SYSCTRL_BASE_ADDRESS + SYSCTRL_RCGCGPIO_OFFSET))
 
 /**********************************************************************************************************************
  *  GLOBAL FUNCTION MACROS

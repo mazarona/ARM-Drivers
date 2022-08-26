@@ -36,7 +36,7 @@ const Port_ConfigType Port_Config[PORT_NUMBER_OF_USED_CHANNELS] = {
         pinExternalInterrupt
     */
     {
-        PORT_PIN_A0,
+        PORT_PIN_F0,
         PORT_PIN_OUTPUT,
         PORT_PIN_A0_MODE_DIO,
         PORT_ATTACH_NOTHING,
@@ -46,7 +46,7 @@ const Port_ConfigType Port_Config[PORT_NUMBER_OF_USED_CHANNELS] = {
     },
 
     {
-        PORT_PIN_A1,
+        PORT_PIN_F1,
         PORT_PIN_OUTPUT,
         PORT_PIN_A1_MODE_DIO,
         PORT_ATTACH_NOTHING,

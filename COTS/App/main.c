@@ -20,11 +20,11 @@ void sysTickISR(void) {
   if (isrCount > numberOfOverFlows) {
     if (currentLedState == 1) {
       currentLedState = 0;
-      Gpio_WriteChannel(GPIO_Channel_A0, GPIO_LEVEL_LOW);
+      Gpio_WriteChannel(GPIO_Channel_F0, GPIO_LEVEL_LOW);
       numberOfOverFlows = offNumberOfOverFlows;
     } else {
       currentLedState = 1;
-      Gpio_WriteChannel(GPIO_Channel_A0, GPIO_LEVEL_HIGH);
+      Gpio_WriteChannel(GPIO_Channel_F0, GPIO_LEVEL_HIGH);
       numberOfOverFlows = onNumberOfOverFlows;
     }
     isrCount = 0;

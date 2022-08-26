@@ -14,6 +14,7 @@
  *********************************************************************************************************************/
 #include "../../../Lib/Std_Types.h"
 #include "../Inc/IntCtrl_Types.h"
+#include "IntCtrl_Cfg.h"
 /* TODO : Should I change the type definitions for the config inside of this
 file instead of inside IntCtrl_Types.h since It's not really a part of my driver
 API... It's only used to config how my code behaves... I mean the user will
@@ -33,11 +34,9 @@ config in a seperate Module_ConfigTypes.h*/
 /**********************************************************************************************************************
  *  GLOBAL DATA
  *********************************************************************************************************************/
-const NVIC_CfgType NVIC_Cfg[] = {
+const NVIC_CfgType NVIC_Cfg[NUMBER_OF_ACTIVE_INT] = {
     /*Interrupt Number | Group Priority | Sub-Groub Priority */
-    {NVIC_GPIO_PORT_A, 0, 1},
-    {NVIC_GPIO_PORT_B, 0, 2},
-    {NVIC_GPIO_PORT_C, 0, 3},
+    {NVIC_DIO_PORT_F, 0, 1},
 };
 
 /**********************************************************************************************************************

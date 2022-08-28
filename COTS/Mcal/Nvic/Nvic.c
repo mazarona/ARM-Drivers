@@ -12,9 +12,9 @@
 /**********************************************************************************************************************
  *  INCLUDES
  *********************************************************************************************************************/
-#include "Inc/IntCtrl.h"
+#include "Inc/Nvic.h"
 #include "../../Lib/Mcu_Hw.h"
-#include "Config/IntCtrl_Cfg.h"
+#include "Config/Nvic_Cfg.h"
 
 /**********************************************************************************************************************
  *  LOCAL MACROS CONSTANT\FUNCTION
@@ -28,14 +28,14 @@
 /**********************************************************************************************************************
  *  GLOBAL DATA
  *********************************************************************************************************************/
-extern const NVIC_CfgType NVIC_Cfg[NVIC_NUMBER_OF_ACTIVE_INT];
+extern const Nvic_CfgType NVIC_Cfg[NVIC_NUMBER_OF_ACTIVE_INT];
 
 /**********************************************************************************************************************
  *  GLOBAL FUNCTIONS
  *********************************************************************************************************************/
 
 /******************************************************************************
- * \Syntax          : void IntCrtl_Init(void)
+ * \Syntax          : void Nvic_Init(void)
  * \Description     : initialize Nvic\SCB Module by parsing the
  *Configuration into Nvic\SCB registers
  *
@@ -45,7 +45,7 @@ extern const NVIC_CfgType NVIC_Cfg[NVIC_NUMBER_OF_ACTIVE_INT];
  * \Parameters (out): None
  * \Return value:   : None
  *******************************************************************************/
-void IntCrtl_Init(void) {
+void Nvic_Init(void) {
   uint32 interruptNumber, prio;
   uint8 groupPriority, subGroupPriority, i;
   /*Configure Grouping\SubGrouping System in APINT register in SCB*/

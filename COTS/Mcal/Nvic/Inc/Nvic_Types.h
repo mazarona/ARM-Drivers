@@ -3,14 +3,14 @@
  *  FILE DESCRIPTION
  *
  -------------------------------------------------------------------------------------------------------------------
- *         File:  IntCtrl_Types.h
- *       Module:  -
+ *         File:  Nvic_Types.h
+ *       Module:  Nvic
  *
- *  Description:  <Write File DESCRIPTION here>
+ *  Description:  API Types definition for Nvic module 
  *
  *********************************************************************************************************************/
-#ifndef INTCTRL_TYPES_H
-#define INTCTRL_TYPES_H
+#ifndef NVIC_TYPES_H
+#define NVIC_TYPES_H
 
 /**********************************************************************************************************************
  * INCLUDES
@@ -111,10 +111,10 @@ typedef struct {
   Nvic_IntType interruptNumber;
   uint8 groubPriority;
   uint8 subGroupPriority;
-} NVIC_CfgType;
+} Nvic_CfgType;
 
-#endif /* INTCTRL_TYPES_H */
+#endif /* NVIC_TYPES_H */
 
 /**********************************************************************************************************************
- *  END OF FILE: IntCtrl_Types.h
+ *  END OF FILE: Nvic_Types.h
  *********************************************************************************************************************/

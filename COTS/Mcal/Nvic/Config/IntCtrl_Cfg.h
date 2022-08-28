@@ -19,7 +19,7 @@
 /**********************************************************************************************************************
  *  GLOBAL CONSTANT MACROS
  *********************************************************************************************************************/
-#define NUMBER_OF_ACTIVE_INT 1
+#define NVIC_NUMBER_OF_ACTIVE_INT 1
 /*
  * NVIC_GROUPING_SYS_XXX -> group[0:7], sub-group[0:0]
  * NVIC_GROUPING_SYS_XXY -> group[0:3], sub-group[0:1]

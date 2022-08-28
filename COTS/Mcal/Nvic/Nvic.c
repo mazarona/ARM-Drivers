@@ -1,6 +1,7 @@
 /**********************************************************************************************************************
  *  FILE DESCRIPTION
  *  -----------------------------------------------------------------------------------------------------------------*/ /**        \file  IntCrtl.c
+           \file  Nvic.c
  *        \brief  Nested Vector Interrupt Controller Driver
  *
  *      \details  The Driver Configure All MCU interrupts Priority into gorups
@@ -25,20 +26,9 @@
 #define APINT_VECTKEY 0x05FA
 
 /**********************************************************************************************************************
- *  LOCAL DATA
- *********************************************************************************************************************/
-
-/**********************************************************************************************************************
  *  GLOBAL DATA
  *********************************************************************************************************************/
-extern const NVIC_CfgType NVIC_Cfg[];
-/**********************************************************************************************************************
- *  LOCAL FUNCTION PROTOTYPES
- *********************************************************************************************************************/
-
-/**********************************************************************************************************************
- *  LOCAL FUNCTIONS
- *********************************************************************************************************************/
+extern const NVIC_CfgType NVIC_Cfg[NVIC_NUMBER_OF_ACTIVE_INT];
 
 /**********************************************************************************************************************
  *  GLOBAL FUNCTIONS
@@ -58,10 +48,10 @@ extern const NVIC_CfgType NVIC_Cfg[];
 void IntCrtl_Init(void) {
   uint32 interruptNumber, prio;
   uint8 groupPriority, subGroupPriority, i;
-  /*TODO Configure Grouping\SubGrouping System in APINT register in SCB*/
+  /*Configure Grouping\SubGrouping System in APINT register in SCB*/
   APINT = (APINT_VECTKEY << 16) | (NVIC_GROUPING_SYS << 8);
 
-  for (i = 0; i < NUMBER_OF_ACTIVE_INT; i++) {
+  for (i = 0; i < NVIC_NUMBER_OF_ACTIVE_INT; i++) {
     interruptNumber = NVIC_Cfg[i].interruptNumber;
     groupPriority = NVIC_Cfg[i].groubPriority;
     subGroupPriority = NVIC_Cfg[i].subGroupPriority;
@@ -85,5 +75,5 @@ void IntCrtl_Init(void) {
 }
 
 /**********************************************************************************************************************
- *  END OF FILE: IntCrtl.c
+ *  END OF FILE: Nvic.c
  *********************************************************************************************************************/

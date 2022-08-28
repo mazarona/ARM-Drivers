@@ -44,7 +44,7 @@ static const uint32 gpioDataPorts[] = {
 
 /******************************************************************************
  * \Syntax          : void Port_Init(void)
- * \Description     : Initialization of GPIO Ports.
+ * \Description     : Initialization of Gpio Ports.
  *
  * \Sync\Async      : Synchronous
  * \Reentrancy      : Non Reentrant
@@ -117,5 +117,5 @@ void Port_Init(void) {
 }
 
 /**********************************************************************************************************************
- *  END OF FILE: FileName.c
+ *  END OF FILE: Port.c
  *********************************************************************************************************************/

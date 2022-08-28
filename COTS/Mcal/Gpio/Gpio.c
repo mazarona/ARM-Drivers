@@ -1,10 +1,10 @@
 /**********************************************************************************************************************
  *  FILE DESCRIPTION
  *  -----------------------------------------------------------------------------------------------------------------*/
-/**        \file  FileName.c
- *        \brief
+/*         \file  Gpio.c
+ *        \brief  An implementation of the Gpio driver
  *
- *      \details
+ *      \details  It implements 5 sub-routines used for wirting or reading a particular pin
  *
  *
  *********************************************************************************************************************/
@@ -38,15 +38,15 @@ static const uint32 gpioDataPorts[] = {
  *********************************************************************************************************************/
 
 /******************************************************************************
- * \Syntax          : Std_ReturnType FunctionName(AnyType parameterName)
- * \Description     : Describe this service
+ * \Syntax          : Gpio_LevelType Gpio_ReadChannel(Gpio_ChannelType channelId); 
+ * \Description     : read level from channel 
  *
  * \Sync\Async      : Synchronous
- * \Reentrancy      : Non Reentrant
- * \Parameters (in) : parameterName   Parameter Describtion
+ * \Reentrancy      : Reentrant
+ * \Parameters (in) : channelId   Identifies what channel to read 
  * \Parameters (out): None
- * \Return value:   : Std_ReturnType  E_OK
- *                                    E_NOT_OK
+ * \Return value:   : Gpio_LevelType  GPIO_LEVEL_HIGH 
+ *                                    GPIO_LEVEL_LOW 
  *******************************************************************************/
 
 Gpio_LevelType Gpio_ReadChannel(Gpio_ChannelType channelId) {
@@ -71,15 +71,15 @@ Gpio_LevelType Gpio_ReadChannel(Gpio_ChannelType channelId) {
 }
 
 /******************************************************************************
- * \Syntax          : Std_ReturnType FunctionName(AnyType parameterName)
- * \Description     : Describe this service
+ * \Syntax          : void Gpio_WriteChannel(Gpio_ChannelType channelId, Gpio_LevelType level)
+ * \Description     : Write level to channel 
  *
  * \Sync\Async      : Synchronous
- * \Reentrancy      : Non Reentrant
- * \Parameters (in) : parameterName   Parameter Describtion
+ * \Reentrancy      : Reentrant
+ * \Parameters (in) : channelId   Identifies what channel to write
+                      level       The value to be written on the channel
  * \Parameters (out): None
- * \Return value:   : Std_ReturnType  E_OK
- *                                    E_NOT_OK
+ * \Return value:   : void  
  *******************************************************************************/
 void Gpio_WriteChannel(Gpio_ChannelType channelId, Gpio_LevelType level) {
   uint32 pinIndex, portIndex, dataPortMaskAdd;
@@ -99,15 +99,14 @@ void Gpio_WriteChannel(Gpio_ChannelType channelId, Gpio_LevelType level) {
 }
 
 /******************************************************************************
- * \Syntax          : Std_ReturnType FunctionName(AnyType parameterName)
- * \Description     : Describe this service
+ * \Syntax          : Gpio_PortLevelType Gpio_ReadPort(Gpio_PortType portId) 
+ * \Description     : Read level from port 
  *
  * \Sync\Async      : Synchronous
- * \Reentrancy      : Non Reentrant
- * \Parameters (in) : parameterName   Parameter Describtion
+ * \Reentrancy      : Reentrant
+ * \Parameters (in) : portId         Identifies the port 
  * \Parameters (out): None
- * \Return value:   : Std_ReturnType  E_OK
- *                                    E_NOT_OK
+ * \Return value:   : Gpio_PortLevelType  uint8
  *******************************************************************************/
 Gpio_PortLevelType Gpio_ReadPort(Gpio_PortType portId) {
   Gpio_PortLevelType level;
@@ -118,15 +117,15 @@ Gpio_PortLevelType Gpio_ReadPort(Gpio_PortType portId) {
 }
 
 /******************************************************************************
- * \Syntax          : Std_ReturnType FunctionName(AnyType parameterName)
- * \Description     : Describe this service
+ * \Syntax          : void Gpio_WritePort(Gpio_PortType portId, Gpio_PortLevelType level) 
+ * \Description     : Write level to port 
  *
  * \Sync\Async      : Synchronous
- * \Reentrancy      : Non Reentrant
- * \Parameters (in) : parameterName   Parameter Describtion
+ * \Reentrancy      : Reentrant
+ * \Parameters (in) : portId  Identifies the port 
+                      level   The value to be written on the port
  * \Parameters (out): None
- * \Return value:   : Std_ReturnType  E_OK
- *                                    E_NOT_OK
+ * \Return value:   : void
  *******************************************************************************/
 void Gpio_WritePort(Gpio_PortType portId, Gpio_PortLevelType level) {
   uint32 dataPortMaskAdd;
@@ -135,15 +134,16 @@ void Gpio_WritePort(Gpio_PortType portId, Gpio_PortLevelType level) {
 }
 
 /******************************************************************************
- * \Syntax          : Std_ReturnType FunctionName(AnyType parameterName)
- * \Description     : Describe this service
+ * \Syntax          : Gpio_LevelType Gpio_FlipChannel(Gpio_ChannelType channelId) 
+ * \Description     : Toggel the given channel level
  *
  * \Sync\Async      : Synchronous
- * \Reentrancy      : Non Reentrant
- * \Parameters (in) : parameterName   Parameter Describtion
+ * \Reentrancy      : Non Reentrant  // TODO: Use synchronous primitives to make it reentrant
+ * \Parameters (in) : channelId   Identifies the channel 
  * \Parameters (out): None
- * \Return value:   : Std_ReturnType  E_OK
- *                                    E_NOT_OK
+ * \Return value:   : Gpio_LevelType  GPIO_LEVEL_LOW
+                                      GPIO_LEVEL_HIGH
+ *                                    
  *******************************************************************************/
 Gpio_LevelType Gpio_FlipChannel(Gpio_ChannelType channelId) {
   Gpio_LevelType level;
@@ -158,5 +158,5 @@ Gpio_LevelType Gpio_FlipChannel(Gpio_ChannelType channelId) {
 }
 
 /**********************************************************************************************************************
- *  END OF FILE: FileName.c
+ *  END OF FILE: Gpio.c
  *********************************************************************************************************************/

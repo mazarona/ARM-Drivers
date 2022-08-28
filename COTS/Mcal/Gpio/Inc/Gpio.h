@@ -3,8 +3,8 @@
  *  FILE DESCRIPTION
  *
  -------------------------------------------------------------------------------------------------------------------
- *         File: GPIO.h
- *       Module: GPIO
+ *         File: Gpio.h
+ *       Module: Gpio 
  *
  *  Description:  API for the GPIO module
  *

@@ -1,15 +1,28 @@
 #include "../Mcal/Port/Inc/Port.h"
 #include "../Mcal/Gpio/Inc/Gpio.h"
-#include "../Mcal/Nvic/Inc/IntCtrl.h"
+#include "../Mcal/Nvic/Inc/Nvic.h"
 #include "../Mcal/Sys_Tick/Inc/SysTick.h"
 void sysTickISR(void);
+int onTimeInSeconds = 1;
+int offTimeInSeconds = 1;
+int setOnOrOffFlag = 0;
 int main() {
-  IntCrtl_Init();
+  Nvic_Init();
   Port_Init();
   SysTick_SetISRCallBack(sysTickISR);
-  SysTick_SetDuration(5, 1);
+  SysTick_SetDuration(onTimeInSeconds, offTimeInSeconds);
   SysTick_Init();
   while (1) {
+		if(!Gpio_ReadChannel(GPIO_Channel_F0)){
+			while(!Gpio_ReadChannel(GPIO_Channel_F0));
+			setOnOrOffFlag = !setOnOrOffFlag;
+		}
+		if(!Gpio_ReadChannel(GPIO_Channel_F4)){
+			while(!Gpio_ReadChannel(GPIO_Channel_F4));
+			if(setOnOrOffFlag) onTimeInSeconds += 1;
+			else offTimeInSeconds += 1;
+			SysTick_SetDuration(onTimeInSeconds, offTimeInSeconds);
+		}
   }
 }
 

@@ -3,7 +3,7 @@
  *  FILE DESCRIPTION
  *
  -------------------------------------------------------------------------------------------------------------------
- *         File: GPIO_Types.h
+ *         File: gpio_types.h
  *       Module: GPIO
  *
  *  Description: API types definition for GPIO module.
@@ -15,12 +15,13 @@
 /**********************************************************************************************************************
  * INCLUDES
  *********************************************************************************************************************/
-#include "../../../Lib/Std_Types.h"
+#include "../../../lib/std_types.h"
 
 /**********************************************************************************************************************
  *  GLOBAL DATA TYPES AND STRUCTURES
  *********************************************************************************************************************/
-typedef enum {
+typedef enum
+{
   GPIO_Channel_A0,
   GPIO_Channel_A1,
   GPIO_Channel_A2,
@@ -71,7 +72,8 @@ typedef enum {
   GPIO_Channel_F4,
 } Gpio_ChannelType;
 
-typedef enum {
+typedef enum
+{
   GPIO_Port_A,
   GPIO_Port_B,
   GPIO_Port_C,
@@ -80,12 +82,16 @@ typedef enum {
   GPIO_Port_F,
 } Gpio_PortType;
 
-typedef enum { GPIO_LEVEL_LOW, GPIO_LEVEL_HIGH } Gpio_LevelType;
+typedef enum
+{
+  GPIO_LEVEL_LOW,
+  GPIO_LEVEL_HIGH
+} Gpio_LevelType;
 
 typedef uint8 Gpio_PortLevelType;
 
 #endif /* GPIO_TYPES_H */
 
 /**********************************************************************************************************************
- *  END OF FILE: Gpio_Types.h
+ *  END OF FILE: gpio_types.h
  *********************************************************************************************************************/

@@ -3,26 +3,38 @@
  *  FILE DESCRIPTION
  *
  -------------------------------------------------------------------------------------------------------------------
- *         File:  SysTick_Types.h
- *       Module:  SysTick
+ *         File:  systick.h
+ *       Module:  SYSTICK
  *
- *  Description:  API Types for the SysTick module 
+ *  Description: user interface for initializing the system timer
  *
  *********************************************************************************************************************/
-#ifndef SYSTICK_TYPES_H
-#define SYSTICK_TYPES_H
+#ifndef SYSTICK_H
+#define SYSTICK_H
 
 /**********************************************************************************************************************
  * INCLUDES
  *********************************************************************************************************************/
-#include "../../../Lib/Std_Types.h"
+#include "systick_types.h"
 
 /**********************************************************************************************************************
- *  GLOBAL DATA TYPES AND STRUCTURES
+ *  GLOBAL DATA PROTOTYPES
  *********************************************************************************************************************/
-typedef float64 SysTick_DurationInSType;
+extern uint32 numberOfOverFlows;
+extern uint32 onNumberOfOverFlows;
+extern uint32 offNumberOfOverFlows;
 
-#endif /* SYSTICK_TYPES_H */
 /**********************************************************************************************************************
- *  END OF FILE: SysTick_Types.h
+ *  GLOBAL FUNCTION PROTOTYPES
+ *********************************************************************************************************************/
+
+void SysTick_Init(void);
+void SysTick_SetDuration(SysTick_DurationInSType onDuration,
+                         SysTick_DurationInSType offDuration);
+void SysTick_SetISRCallBack(void (*funPtr)(void));
+
+#endif /* SYSTICK_H */
+
+/**********************************************************************************************************************
+ *  END OF FILE: systick.h
  *********************************************************************************************************************/

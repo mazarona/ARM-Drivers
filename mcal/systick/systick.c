@@ -1,7 +1,7 @@
 /**********************************************************************************************************************
  *  FILE DESCRIPTION
  *  -----------------------------------------------------------------------------------------------------------------*/
-/**        \file  SysTick.c
+/**        \file  systick.c
  *        \brief Implemetiation of the system timer driver
  *
  *      \details Implemetiation of the system timer driver. It only has
@@ -14,10 +14,10 @@
 /**********************************************************************************************************************
  *  INCLUDES
  *********************************************************************************************************************/
-#include "Inc/SysTick.h"
-#include "../../Lib/Mcu_Hw.h"
-#include "../../Lib/Std_Types.h"
-#include "Config/SysTick_Cfg.h"
+#include "inc/systick.h"
+#include "../../lib/mcu_hw.h"
+#include "../../lib/std_types.h"
+#include "config/systick_cfg.h"
 
 /**********************************************************************************************************************
  *  LOCAL MACROS CONSTANT\FUNCTION
@@ -51,7 +51,8 @@ uint32 offNumberOfOverFlows = 0;
  * \Parameters (out): None
  * \Return value:   : void
  *******************************************************************************/
-void SysTick_Init(void) {
+void SysTick_Init(void)
+{
   /* Program the value in the STRRELOAD register with user define value */
   SYSTICK_STRELOAD_ADDRESS = SYSTICK_INIT_PRELOAD_VAL;
 
@@ -70,19 +71,20 @@ void SysTick_Init(void) {
 }
 
 /******************************************************************************
- * \Syntax          :  void SysTick_SetDuration(SysTick_DurationInSType onDuration, 
-                       SysTick_DurationInSType offDuration) 
- * \Description     :  Set two delay durations for the SysTick ISR 
+ * \Syntax          :  void SysTick_SetDuration(SysTick_DurationInSType onDuration,
+                       SysTick_DurationInSType offDuration)
+ * \Description     :  Set two delay durations for the SysTick ISR
 
  * \Sync\Async      : Synchronous
  * \Reentrancy      : Reentrant
- * \Parameters (in) : onDuration  The amount of time for the LED to be on 
+ * \Parameters (in) : onDuration  The amount of time for the LED to be on
                       offDuration The amount of time for the LED to be off
  * \Parameters (out): None
  * \Return value:   : void
  *******************************************************************************/
 /* TODO: Should this function be in the HAL layer? */
-void SysTick_SetDuration(SysTick_DurationInSType onDuration, SysTick_DurationInSType offDuration) {
+void SysTick_SetDuration(SysTick_DurationInSType onDuration, SysTick_DurationInSType offDuration)
+{
   /* Program the value in the STRRELOAD */
   onNumberOfOverFlows = (int)(onDuration * 1000.0);
   offNumberOfOverFlows = (int)(offDuration * 1000.0);
@@ -119,5 +121,5 @@ void SysTick_SetISRCallBack(void (*funPtr)(void)) { sysTickISR = funPtr; }
 void SysTick_Handler(void) { sysTickISR(); }
 
 /**********************************************************************************************************************
- *  END OF FILE: SysTick.c
+ *  END OF FILE: systick.c
  *********************************************************************************************************************/

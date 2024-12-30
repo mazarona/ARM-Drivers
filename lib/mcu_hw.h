@@ -3,8 +3,8 @@
  *  FILE DESCRIPTION
  *
  -------------------------------------------------------------------------------------------------------------------
- *         File:  Mcu_Hw.h
- *       Module:  Mcu_Hw
+ *         File:  mcu_hw.h
+ *       Module:  mcu_hw
  *
  *  Description:  header file for Registers definition
  *
@@ -15,7 +15,7 @@
 /**********************************************************************************************************************
  * INCLUDES
  *********************************************************************************************************************/
-#include "Std_Types.h"
+#include "std_types.h"
 
 /*****************************************************************************************************************kjj*****
  *  GLOBAL DATA TYPES AND STRUCTURES
@@ -33,7 +33,8 @@
 #define SYSTICK_STRELOAD_OFFSET 0x4
 #define SYSTICK_STCURRENT_OFFSET 0x8
 
-typedef struct {
+typedef struct
+{
   uint32 EN : 1;
   uint32 INEN : 1;
   uint32 CLK_SRC : 1;
@@ -41,17 +42,18 @@ typedef struct {
   uint32 COUNT : 1;
   uint32 : 15;
 } SysTick_STCTRL_BF;
-typedef union {
+typedef union
+{
   uint32 R;
   SysTick_STCTRL_BF BF;
 } SysTick_STCTRL_Tag;
 
-#define SYSTICK_STCTRL_ADDRESS                                                 \
-  (*((volatile SysTick_STCTRL_Tag *)(SYSTICK_BASE_ADDRESS +                    \
+#define SYSTICK_STCTRL_ADDRESS                              \
+  (*((volatile SysTick_STCTRL_Tag *)(SYSTICK_BASE_ADDRESS + \
                                      SYSTICK_STCTRL_OFFSET)))
-#define SYSTICK_STRELOAD_ADDRESS                                               \
+#define SYSTICK_STRELOAD_ADDRESS \
   *((volatile uint32 *)(SYSTICK_BASE_ADDRESS + SYSTICK_STRELOAD_OFFSET))
-#define SYSTICK_STCURRENT_ADDRESS                                              \
+#define SYSTICK_STCURRENT_ADDRESS \
   *((volatile uint32 *)(SYSTICK_BASE_ADDRESS + SYSTICK_STCURRENT_OFFSET))
 
 /*SCB*/
@@ -113,7 +115,7 @@ typedef union {
 /* SYSCTRL Registers */
 #define SYSCTRL_BASE_ADDRESS 0x400FE000
 #define SYSCTRL_RCGCGPIO_OFFSET 0x608
-#define SYSCTRL_RCGCGPIO_ADDRESS                                               \
+#define SYSCTRL_RCGCGPIO_ADDRESS \
   *((volatile uint32 *)(SYSCTRL_BASE_ADDRESS + SYSCTRL_RCGCGPIO_OFFSET))
 
 /**********************************************************************************************************************
@@ -128,5 +130,5 @@ typedef union {
 #endif /* MCU_HW_H */
 
 /**********************************************************************************************************************
- *  END OF FILE: Mcu_Hw.h
+ *  END OF FILE: mcu_hw.h
  *********************************************************************************************************************/

@@ -12,9 +12,9 @@
 /**********************************************************************************************************************
  *  INCLUDES
  *********************************************************************************************************************/
-#include "Inc/Gpio.h"
-#include "../../Lib/Mcu_Hw.h"
-#include "../../Lib/Std_Types.h"
+#include "inc/gpio.h"
+#include "../../lib/mcu_hw.h"
+#include "../../lib/std_types.h"
 
 /**********************************************************************************************************************
  *  LOCAL MACROS CONSTANT\FUNCTION
@@ -28,9 +28,12 @@
  *  LOCAL DATA
  *********************************************************************************************************************/
 static const uint32 gpioDataPorts[] = {
-    GPIO_PORT_A_BASE_ADDRESS, GPIO_PORT_B_BASE_ADDRESS,
-    GPIO_PORT_C_BASE_ADDRESS, GPIO_PORT_D_BASE_ADDRESS,
-    GPIO_PORT_E_BASE_ADDRESS, GPIO_PORT_F_BASE_ADDRESS,
+    GPIO_PORT_A_BASE_ADDRESS,
+    GPIO_PORT_B_BASE_ADDRESS,
+    GPIO_PORT_C_BASE_ADDRESS,
+    GPIO_PORT_D_BASE_ADDRESS,
+    GPIO_PORT_E_BASE_ADDRESS,
+    GPIO_PORT_F_BASE_ADDRESS,
 };
 
 /**********************************************************************************************************************
@@ -38,18 +41,19 @@ static const uint32 gpioDataPorts[] = {
  *********************************************************************************************************************/
 
 /******************************************************************************
- * \Syntax          : Gpio_LevelType Gpio_ReadChannel(Gpio_ChannelType channelId); 
- * \Description     : read level from channel 
+ * \Syntax          : Gpio_LevelType Gpio_ReadChannel(Gpio_ChannelType channelId);
+ * \Description     : read level from channel
  *
  * \Sync\Async      : Synchronous
  * \Reentrancy      : Reentrant
- * \Parameters (in) : channelId   Identifies what channel to read 
+ * \Parameters (in) : channelId   Identifies what channel to read
  * \Parameters (out): None
- * \Return value:   : Gpio_LevelType  GPIO_LEVEL_HIGH 
- *                                    GPIO_LEVEL_LOW 
+ * \Return value:   : Gpio_LevelType  GPIO_LEVEL_HIGH
+ *                                    GPIO_LEVEL_LOW
  *******************************************************************************/
 
-Gpio_LevelType Gpio_ReadChannel(Gpio_ChannelType channelId) {
+Gpio_LevelType Gpio_ReadChannel(Gpio_ChannelType channelId)
+{
   uint32 pinIndex, portIndex, dataPortMaskAdd, gpioDataPortAddress;
   Gpio_LevelType level;
   portIndex = channelId / NUMBER_OF_CHANNELS_PER_PORT;
@@ -72,16 +76,17 @@ Gpio_LevelType Gpio_ReadChannel(Gpio_ChannelType channelId) {
 
 /******************************************************************************
  * \Syntax          : void Gpio_WriteChannel(Gpio_ChannelType channelId, Gpio_LevelType level)
- * \Description     : Write level to channel 
+ * \Description     : Write level to channel
  *
  * \Sync\Async      : Synchronous
  * \Reentrancy      : Reentrant
  * \Parameters (in) : channelId   Identifies what channel to write
                       level       The value to be written on the channel
  * \Parameters (out): None
- * \Return value:   : void  
+ * \Return value:   : void
  *******************************************************************************/
-void Gpio_WriteChannel(Gpio_ChannelType channelId, Gpio_LevelType level) {
+void Gpio_WriteChannel(Gpio_ChannelType channelId, Gpio_LevelType level)
+{
   uint32 pinIndex, portIndex, dataPortMaskAdd;
   portIndex = channelId / NUMBER_OF_CHANNELS_PER_PORT;
   pinIndex = channelId % NUMBER_OF_CHANNELS_PER_PORT;
@@ -99,16 +104,17 @@ void Gpio_WriteChannel(Gpio_ChannelType channelId, Gpio_LevelType level) {
 }
 
 /******************************************************************************
- * \Syntax          : Gpio_PortLevelType Gpio_ReadPort(Gpio_PortType portId) 
- * \Description     : Read level from port 
+ * \Syntax          : Gpio_PortLevelType Gpio_ReadPort(Gpio_PortType portId)
+ * \Description     : Read level from port
  *
  * \Sync\Async      : Synchronous
  * \Reentrancy      : Reentrant
- * \Parameters (in) : portId         Identifies the port 
+ * \Parameters (in) : portId         Identifies the port
  * \Parameters (out): None
  * \Return value:   : Gpio_PortLevelType  uint8
  *******************************************************************************/
-Gpio_PortLevelType Gpio_ReadPort(Gpio_PortType portId) {
+Gpio_PortLevelType Gpio_ReadPort(Gpio_PortType portId)
+{
   Gpio_PortLevelType level;
   uint32 dataPortMaskAdd;
   dataPortMaskAdd = 0xFF << 2;
@@ -117,40 +123,45 @@ Gpio_PortLevelType Gpio_ReadPort(Gpio_PortType portId) {
 }
 
 /******************************************************************************
- * \Syntax          : void Gpio_WritePort(Gpio_PortType portId, Gpio_PortLevelType level) 
- * \Description     : Write level to port 
+ * \Syntax          : void Gpio_WritePort(Gpio_PortType portId, Gpio_PortLevelType level)
+ * \Description     : Write level to port
  *
  * \Sync\Async      : Synchronous
  * \Reentrancy      : Reentrant
- * \Parameters (in) : portId  Identifies the port 
+ * \Parameters (in) : portId  Identifies the port
                       level   The value to be written on the port
  * \Parameters (out): None
  * \Return value:   : void
  *******************************************************************************/
-void Gpio_WritePort(Gpio_PortType portId, Gpio_PortLevelType level) {
+void Gpio_WritePort(Gpio_PortType portId, Gpio_PortLevelType level)
+{
   uint32 dataPortMaskAdd;
   dataPortMaskAdd = 0xFF << 2;
   GET_REG(gpioDataPorts[portId], GPIO_DATA_OFFSET + dataPortMaskAdd) = level;
 }
 
 /******************************************************************************
- * \Syntax          : Gpio_LevelType Gpio_FlipChannel(Gpio_ChannelType channelId) 
+ * \Syntax          : Gpio_LevelType Gpio_FlipChannel(Gpio_ChannelType channelId)
  * \Description     : Toggel the given channel level
  *
  * \Sync\Async      : Synchronous
  * \Reentrancy      : Non Reentrant  // TODO: Use synchronous primitives to make it reentrant
- * \Parameters (in) : channelId   Identifies the channel 
+ * \Parameters (in) : channelId   Identifies the channel
  * \Parameters (out): None
  * \Return value:   : Gpio_LevelType  GPIO_LEVEL_LOW
                                       GPIO_LEVEL_HIGH
- *                                    
+ *
  *******************************************************************************/
-Gpio_LevelType Gpio_FlipChannel(Gpio_ChannelType channelId) {
+Gpio_LevelType Gpio_FlipChannel(Gpio_ChannelType channelId)
+{
   Gpio_LevelType level;
-  if (Gpio_ReadChannel(channelId) == GPIO_LEVEL_HIGH) {
+  if (Gpio_ReadChannel(channelId) == GPIO_LEVEL_HIGH)
+  {
     Gpio_WriteChannel(channelId, GPIO_LEVEL_LOW);
     level = GPIO_LEVEL_LOW;
-  } else {
+  }
+  else
+  {
     Gpio_WriteChannel(channelId, GPIO_LEVEL_HIGH);
     level = GPIO_LEVEL_HIGH;
   }

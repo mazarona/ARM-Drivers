@@ -3,8 +3,8 @@
  *  FILE DESCRIPTION
  *
  -------------------------------------------------------------------------------------------------------------------
- *         File:  SysTick_Cfg.h
- *       Module:  SysTick
+ *         File:  systick_cfg.h
+ *       Module:  SYSTICK
  *
  *  Description:  User Configuration file for the system timer module
  *
@@ -29,5 +29,5 @@ SYSTICK_INERNAL -> to use the internal Precision internal oscillator divided by
 
 #endif /* SYSTICK_CFG_H */
 /**********************************************************************************************************************
- *  END OF FILE: SysTick_Cfg.h
+ *  END OF FILE: systick_cfg.h
  *********************************************************************************************************************/

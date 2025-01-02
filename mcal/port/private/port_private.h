@@ -3,8 +3,8 @@
  *  FILE DESCRIPTION
  *
  -------------------------------------------------------------------------------------------------------------------
- *         File:  Port_Private.h
- *       Module:  Port
+ *         File:  port_private.h
+ *       Module:  PORT
  *
  *  Description:  A private file used to declare types that the user will use to
  configure the module. I put it here instead of Port_Types.h to not clutter my
@@ -18,12 +18,13 @@
 /**********************************************************************************************************************
  * INCLUDES
  *********************************************************************************************************************/
-#include "../Inc/Port_Types.h"
+#include "../inc/port_types.h"
 
 /**********************************************************************************************************************
  *  GLOBAL DATA TYPES AND STRUCTURES
  *********************************************************************************************************************/
-typedef struct {
+typedef struct
+{
   Port_PinType pinId;
   Port_PinDirectionType pinDirection;
   Port_PinModeType pinMode;
@@ -35,5 +36,5 @@ typedef struct {
 #endif /* PORT_PRIVATE_H */
 
 /**********************************************************************************************************************
- *  END OF FILE: Port_Private.h
+ *  END OF FILE: port_private.h
  *********************************************************************************************************************/

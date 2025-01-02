@@ -3,7 +3,7 @@
  *  FILE DESCRIPTION
  *
  -------------------------------------------------------------------------------------------------------------------
- *         File:  Platform_Types.h
+ *         File:  platform_types.h
  *       Module:  -
  *
  *  Description:  Contains types that dependent on platform - CortexM4
@@ -78,5 +78,5 @@ typedef unsigned long long
 #endif /* PLATFORM_TYPES_H */
 
 /**********************************************************************************************************************
- *  END OF FILE: Std_Types.h
+ *  END OF FILE: platform_types.h
  *********************************************************************************************************************/

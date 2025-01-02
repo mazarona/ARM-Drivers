@@ -1,7 +1,7 @@
 /**********************************************************************************************************************
  *  FILE DESCRIPTION
  *  -----------------------------------------------------------------------------------------------------------------*/
-/**        \file  Nvic_Lcfg.c
+/**        \file  nvic_lcfg.c
  *        \brief  Configuration file for Nvic module
  *
  *      \details  Configuration file for Nvic module
@@ -12,9 +12,9 @@
 /**********************************************************************************************************************
  *  INCLUDES
  *********************************************************************************************************************/
-#include "../../../Lib/Std_Types.h"
-#include "../Inc/Nvic_Types.h"
-#include "Nvic_Cfg.h"
+#include "../../../lib/std_types.h"
+#include "../inc/nvic_types.h"
+#include "nvic_cfg.h"
 /* TODO : Should I change the type definitions for the config inside of this
 file instead of inside Nvic_Types.h since It's not really a part of my driver
 API... It's only used to config how my code behaves... I mean the user will
@@ -32,5 +32,5 @@ const Nvic_CfgType NVIC_Cfg[NVIC_NUMBER_OF_ACTIVE_INT] = {
 };
 
 /**********************************************************************************************************************
- *  END OF FILE: Nvic_Lcfg.c
+ *  END OF FILE: nvic_lcfg.c
  *********************************************************************************************************************/

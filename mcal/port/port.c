@@ -2,7 +2,7 @@
 /**********************************************************************************************************************
  *  FILE DESCRIPTION
  *  -----------------------------------------------------------------------------------------------------------------*/
-/**        \file  Port.c
+/**        \file  port.c
  *        \brief  Implementaion of the Port Driver
  *
  *      \details  Port Driver Initialization given user configuration.
@@ -15,9 +15,9 @@
 /**********************************************************************************************************************
  *  INCLUDES
  *********************************************************************************************************************/
-#include "Inc/Port.h"
-#include "../../Lib/Mcu_Hw.h"
-#include "Config/Port_Cfg.h"
+#include "inc/port.h"
+#include "../../lib/mcu_hw.h"
+#include "config/port_cfg.h"
 
 /**********************************************************************************************************************
  *  LOCAL MACROS CONSTANT\FUNCTION
@@ -33,9 +33,12 @@ extern const Port_ConfigType Port_Config[PORT_NUMBER_OF_USED_CHANNELS];
  *  LOCAL DATA
  *********************************************************************************************************************/
 static const uint32 gpioDataPorts[] = {
-    GPIO_PORT_A_BASE_ADDRESS, GPIO_PORT_B_BASE_ADDRESS,
-    GPIO_PORT_C_BASE_ADDRESS, GPIO_PORT_D_BASE_ADDRESS,
-    GPIO_PORT_E_BASE_ADDRESS, GPIO_PORT_F_BASE_ADDRESS,
+    GPIO_PORT_A_BASE_ADDRESS,
+    GPIO_PORT_B_BASE_ADDRESS,
+    GPIO_PORT_C_BASE_ADDRESS,
+    GPIO_PORT_D_BASE_ADDRESS,
+    GPIO_PORT_E_BASE_ADDRESS,
+    GPIO_PORT_F_BASE_ADDRESS,
 };
 
 /**********************************************************************************************************************
@@ -52,9 +55,11 @@ static const uint32 gpioDataPorts[] = {
  * \Parameters (out): None
  * \Return value:   : void
  *******************************************************************************/
-void Port_Init(void) {
+void Port_Init(void)
+{
   uint32 portIndex, pinIndex, portAddress, gpioPortBaseAdress;
-  for (int i = 0; i < PORT_NUMBER_OF_USED_CHANNELS; i++) {
+  for (int i = 0; i < PORT_NUMBER_OF_USED_CHANNELS; i++)
+  {
     portIndex = Port_Config[i].pinId / NUMBER_OF_CHANNELS_PER_PORT;
     pinIndex = Port_Config[i].pinId % NUMBER_OF_CHANNELS_PER_PORT;
     gpioPortBaseAdress = gpioDataPorts[portIndex];
@@ -66,30 +71,42 @@ void Port_Init(void) {
         (Port_Config[i].pinDirection << pinIndex);
 
     /* Pin Mode */
-    if (Port_Config[i].pinMode % 16 == 0) {
+    if (Port_Config[i].pinMode % 16 == 0)
+    {
       GET_REG(gpioPortBaseAdress, GPIO_AFSEL_OFFSET) &= ~(1 << pinIndex);
-
-    } else {
+    }
+    else
+    {
       GET_REG(gpioPortBaseAdress, GPIO_AFSEL_OFFSET) |= (1 << pinIndex);
       GET_REG(gpioPortBaseAdress, GPIO_PCTL_OFFSET) |=
           (Port_Config[i].pinMode % 16 << pinIndex * 4);
     }
 
     /* Pin Output Current */
-    if (Port_Config[i].pinOutputCurrent == PORT_PIN_OUTPUT_CURRENT_2MA) {
+    if (Port_Config[i].pinOutputCurrent == PORT_PIN_OUTPUT_CURRENT_2MA)
+    {
       GET_REG(gpioPortBaseAdress, GPIO_DR2R_OFFSET) |= (1 << pinIndex);
-    } else if (Port_Config[i].pinOutputCurrent == PORT_PIN_OUTPUT_CURRENT_4MA) {
+    }
+    else if (Port_Config[i].pinOutputCurrent == PORT_PIN_OUTPUT_CURRENT_4MA)
+    {
       GET_REG(gpioPortBaseAdress, GPIO_DR4R_OFFSET) |= (1 << pinIndex);
-    } else if (Port_Config[i].pinOutputCurrent == PORT_PIN_OUTPUT_CURRENT_8MA) {
+    }
+    else if (Port_Config[i].pinOutputCurrent == PORT_PIN_OUTPUT_CURRENT_8MA)
+    {
       GET_REG(gpioPortBaseAdress, GPIO_DR8R_OFFSET) |= (1 << pinIndex);
     }
 
     /* Pin Internal Attach */
-    if (Port_Config[i].pinInternalAttach == PORT_ATTACH_PULLUP) {
+    if (Port_Config[i].pinInternalAttach == PORT_ATTACH_PULLUP)
+    {
       GET_REG(gpioPortBaseAdress, GPIO_PUR_OFFSET) |= (1 << pinIndex);
-    } else if (Port_Config[i].pinInternalAttach == PORT_ATTACH_PULLDOWN) {
+    }
+    else if (Port_Config[i].pinInternalAttach == PORT_ATTACH_PULLDOWN)
+    {
       GET_REG(gpioPortBaseAdress, GPIO_PDR_OFFSET) |= (1 << pinIndex);
-    } else if (Port_Config[i].pinInternalAttach == PORT_ATTACH_OPENDRAIN) {
+    }
+    else if (Port_Config[i].pinInternalAttach == PORT_ATTACH_OPENDRAIN)
+    {
       GET_REG(gpioPortBaseAdress, GPIO_ODR_OFFSET) |= (1 << pinIndex);
     }
 
@@ -98,18 +115,24 @@ void Port_Init(void) {
     GET_REG(gpioPortBaseAdress, GPIO_DEN_OFFSET) |= (1 << pinIndex);
 
     /* Interrupt Control */
-    if (Port_Config[i].pinExternalInterrupt == PORT_EXTI_DISABLE) {
+    if (Port_Config[i].pinExternalInterrupt == PORT_EXTI_DISABLE)
+    {
       GET_REG(gpioPortBaseAdress, GPIO_IM_OFFSET) &= ~(1 << pinIndex);
-    } else {
+    }
+    else
+    {
       GET_REG(gpioPortBaseAdress, GPIO_IM_OFFSET) |= (1 << pinIndex);
-      if (Port_Config[i].pinExternalInterrupt == PORT_EXTI_RISING_EDGE) {
+      if (Port_Config[i].pinExternalInterrupt == PORT_EXTI_RISING_EDGE)
+      {
         GET_REG(gpioPortBaseAdress, GPIO_IM_OFFSET) |= (1 << pinIndex);
-
-      } else if (Port_Config[i].pinExternalInterrupt ==
-                 PORT_EXTI_FALLING_EDGE) {
+      }
+      else if (Port_Config[i].pinExternalInterrupt ==
+               PORT_EXTI_FALLING_EDGE)
+      {
         GET_REG(gpioPortBaseAdress, GPIO_IM_OFFSET) &= ~(1 << pinIndex);
-
-      } else if (Port_Config[i].pinExternalInterrupt == PORT_EXTI_BOTH_EDGES) {
+      }
+      else if (Port_Config[i].pinExternalInterrupt == PORT_EXTI_BOTH_EDGES)
+      {
         GET_REG(gpioPortBaseAdress, GPIO_IBE_OFFSET) |= (1 << pinIndex);
       }
     }
@@ -117,5 +140,5 @@ void Port_Init(void) {
 }
 
 /**********************************************************************************************************************
- *  END OF FILE: Port.c
+ *  END OF FILE: port.c
  *********************************************************************************************************************/

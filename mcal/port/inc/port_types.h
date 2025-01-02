@@ -3,7 +3,7 @@
  *  FILE DESCRIPTION
  *
  -------------------------------------------------------------------------------------------------------------------
- *         File:  Port_Types.h
+ *         File:  port_types.h
  *       Module:  Port
  *
  *  Description: API Types for the Port Module.
@@ -15,12 +15,13 @@
 /**********************************************************************************************************************
  * INCLUDES
  *********************************************************************************************************************/
-#include "../../../Lib/Std_Types.h"
+#include "../../../lib/std_types.h"
 
 /**********************************************************************************************************************
  *  GLOBAL DATA TYPES AND STRUCTURES
  *********************************************************************************************************************/
-typedef enum {
+typedef enum
+{
   PORT_PIN_A0,
   PORT_PIN_A1,
   PORT_PIN_A2,
@@ -71,9 +72,14 @@ typedef enum {
   PORT_PIN_F4,
 } Port_PinType;
 
-typedef enum { PORT_PIN_INPUT, PORT_PIN_OUTPUT } Port_PinDirectionType;
+typedef enum
+{
+  PORT_PIN_INPUT,
+  PORT_PIN_OUTPUT
+} Port_PinDirectionType;
 
-typedef enum {
+typedef enum
+{
   /* PORT A PINS MODES */
   PORT_PIN_A0_MODE_DIO = 16 * 0,
   PORT_PIN_A0_MODE_U0RX,
@@ -302,20 +308,23 @@ typedef enum {
   PORT_PIN_F4_MODE_USB0EPEN,
 } Port_PinModeType;
 
-typedef enum {
+typedef enum
+{
   PORT_ATTACH_NOTHING,
   PORT_ATTACH_PULLUP,
   PORT_ATTACH_PULLDOWN,
   PORT_ATTACH_OPENDRAIN,
 } Port_PinInternalAttachType;
 
-typedef enum {
+typedef enum
+{
   PORT_PIN_OUTPUT_CURRENT_2MA,
   PORT_PIN_OUTPUT_CURRENT_4MA,
   PORT_PIN_OUTPUT_CURRENT_8MA,
 } Port_PinOutputCurrentType;
 
-typedef enum {
+typedef enum
+{
   PORT_EXTI_DISABLE,
   PORT_EXTI_RISING_EDGE,
   PORT_EXTI_FALLING_EDGE,
@@ -325,5 +334,5 @@ typedef enum {
 #endif /* PORT_TYPES_H */
 
 /**********************************************************************************************************************
- *  END OF FILE: Port_Types.h
+ *  END OF FILE: port_types.h
  *********************************************************************************************************************/

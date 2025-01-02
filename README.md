@@ -1,4 +1,4 @@
-This project is part of [Udacity's Advanced Embedded Systems Nanodegree](https://github.com/mazarona/embedded-systems-advanced-nanodegree)
+This project is part of [Udacity's Embedded Systems Advanced Nanodegree](https://github.com/mazarona/embedded-systems-advanced-nanodegree)
 
 # Requirements
 

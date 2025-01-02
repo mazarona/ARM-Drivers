@@ -1,3 +1,5 @@
+This project is part of [Udacity's Advanced Embedded Systems Nanodegree](https://github.com/mazarona/embedded-systems-advanced-nanodegree)
+
 # Requirements
 
 Control blinking of an LED for a user-defined ON and OFF periods.
